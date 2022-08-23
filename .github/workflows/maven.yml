@@ -30,8 +30,8 @@ jobs:
         run: mvn --batch-mode versions:set -DnewVersion=${{ github.event.release.tag_name }} -DgenerateBackupPoms=false
       - name: Build
         run: mvn --batch-mode clean package
-      - uses: actions/upload-artifact@v3
+      - name: Release
+        uses: softprops/action-gh-release@v1
         with:
-          name: war-file ${{ matrix.node-version }}
-          path: /home/runner/work/*/*/app/target/nrmn-app-${{ github.event.release.tag_name }}.war
+          files: /home/runner/work/nrmn-version-repo/nrmn-version-repo/app/target/nrmn-app-${{ github.event.release.tag_name }}.war
     timeout-minutes: 45
