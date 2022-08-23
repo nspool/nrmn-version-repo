@@ -29,9 +29,9 @@ jobs:
       - name: Version
         run: mvn --batch-mode versions:set -DnewVersion=${{ github.event.release.tag_name }} -DgenerateBackupPoms=false
       - name: Build
-        run: mvn --batch-mode clean package
+        run: mvn --batch-mode clean package -Dmaven.test.skip=true
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          files: /home/runner/work/nrmn-version-repo/nrmn-version-repo/app/target/nrmn-app-${{ github.event.release.tag_name }}.war
+          files: /home/runner/work/nrmn-version-repo/nrmn-version-repo/app/target/nrmn-app-*.war
     timeout-minutes: 45
