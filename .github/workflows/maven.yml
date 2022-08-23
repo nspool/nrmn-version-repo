@@ -33,5 +33,5 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: war-file ${{ matrix.node-version }}
-          path: /home/runner/work/nrmn-application/nrmn-application/app/target/nrmn-app-*war
+          path: /home/runner/work/*/8/app/target/nrmn-app-${{ github.event.release.tag_name }}.war
     timeout-minutes: 45
