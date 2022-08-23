@@ -26,8 +26,9 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
-      - name: Update version and build
+      - name: Version
         run: mvn --batch versions:set -DnewVersion=${{ github.event.release.tag_name }} -DgenerateBackupPoms=false
+      - name: Build
         run: mvn --batch clean package
       - uses: actions/upload-artifact@v3
         with:
