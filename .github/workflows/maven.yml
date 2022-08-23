@@ -1,10 +1,11 @@
 # This workflow builds the application and runs unit and integration tests
 
-name: Build and run tests
+name: Build on release
 
 on:
-#  - push
-  - pull_request
+  release:
+    branches:
+      - main
 
 jobs:
   build:
